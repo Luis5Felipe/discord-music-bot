@@ -2,8 +2,10 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import org.botconfiguration.Listener.CommandRegister;
 import org.botconfiguration.ReadyListener;
-import org.botconfiguration.commands.MusicBot;
+import org.botconfiguration.commands.MusicBotOff;
+import org.botconfiguration.commands.MusicBotOn;
 import org.botconfiguration.commands.Ping;
 import org.botconfiguration.token.Token;
 
@@ -17,8 +19,11 @@ public class Main {
                 )
                 .setActivity(Activity.playing("/help"))
                 .addEventListeners(new ReadyListener(),
+                        new CommandRegister(),
                         new Ping(),
-                        new MusicBot())
+                        new MusicBotOn(),
+                        new MusicBotOff()
+                )
                 .build();
         jda.awaitReady();
 
