@@ -12,10 +12,10 @@ public class Ping  extends ListenerAdapter {
         if (event.getAuthor().isBot()) return;
         Message message = event.getMessage();
         String content = message.getContentRaw();
-        if (content.equals("!ping"))
+        if (content.equals("ping"))
         {
             MessageChannel channel = event.getChannel();
-            channel.sendMessage("Pong!").queue();
+            channel.sendMessage("Pong").queue();
         }
     }
 }

@@ -1,4 +1,4 @@
-package org.botconfiguration;
+package org.botconfiguration.token;
 
 import net.dv8tion.jda.api.events.GenericEvent;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
