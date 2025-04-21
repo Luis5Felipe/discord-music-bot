@@ -1,21 +1,28 @@
 package org.botconfiguration.commands;
 
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.GatewayPingEvent;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
-public class Ping  extends ListenerAdapter {
+public class Ping extends ListenerAdapter {
+    private volatile Long ping = -1L;
+
     @Override
-    public void onMessageReceived(MessageReceivedEvent event)
-    {
-        if (event.getAuthor().isBot()) return;
-        Message message = event.getMessage();
-        String content = message.getContentRaw();
-        if (content.equals("ping"))
-        {
-            MessageChannel channel = event.getChannel();
-            channel.sendMessage("Pong").queue();
+    public void onGatewayPing(@NotNull GatewayPingEvent event) {
+        this.ping = event.getNewPing();
+    }
+
+    @Override
+    public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
+        if (!event.isFromGuild()) return;
+        if (event.getUser().isBot()) return;
+        if (!event.getName().equalsIgnoreCase("ping")) return;
+        try {
+            event.reply("Ping " + ping + "ms").queue();
+        } catch (Exception e) {
+            event.reply("Não foi possível obter o ping.").queue();
+            e.printStackTrace();
         }
     }
 }
