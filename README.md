@@ -1,6 +1,6 @@
 # EcoBot
 
-**EcoBot** é um bot simples para Discord com a funcionalidade de tocar músicas utilizando plataformas como YouTube e SoundCloud.
+**EcoBot** é um bot simples para Discord com a funcionalidade de tocar músicas utilizando plataforma SoundCloud.
 
 A ideia surgiu a partir de uma conversa com amigos, onde um deles precisava de um bot de música que também pudesse executar algumas funções administrativas.
 
@@ -67,9 +67,5 @@ java -jar .\target\EcoBot-1.0-SNAPSHOT.jar
 - **/pause** – Pausa a música
 
 - **/clear** – Limpa a fila de músicas
-
-- Suporte completo ao YouTube
-
-- Baixar músicas e vídeos do YouTube
 
 - Deploy do bot em uma plataforma online (ex: Render, Railway, Replit etc.)
